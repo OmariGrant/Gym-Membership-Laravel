@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Members;
 use Illuminate\Http\Request;
+use App\Repositories\MembersRepository;
 
 class MembersController extends Controller
 {
+
+// The Members repository instance.
+
+protected $members;
+
+public function __construct(MembersRepository $members)
+{
+    $this->middleware('auth');
+
+    $this->members = $members;
+}
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,12 @@ class MembersController extends Controller
      */
     public function index()
     {
-        //
+        //List all Members
+        $data = [
+          'members' => $this->members->listMembers()
+        ];
+
+        return view('admin.list', $data);
     }
 
     /**
@@ -24,7 +42,13 @@ class MembersController extends Controller
      */
     public function create()
     {
-        //
+        //add a new member
+
+        $data = [
+          'members' => $this->members->listMembers()
+        ];
+
+        return view('admin.add', $data);
     }
 
     /**

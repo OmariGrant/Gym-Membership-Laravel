@@ -10,12 +10,15 @@ class Members extends Model
 
 // The attributes that are mass assignable.
 
-protected $fillable = ['firstName'];
-protected $fillable = ['lastName'];
-protected $fillable = ['address'];
-protected $fillable = ['DOB'];
-protected $fillable = ['phone'];
-protected $fillable = ['subscription'];
+protected $fillable = [
+  'firstName',
+  'lastName',
+  'address',
+  'DOB',
+  'phone',
+  'subscription'
+];
+
 
 // Find user
 
