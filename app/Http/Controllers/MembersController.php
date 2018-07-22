@@ -45,10 +45,11 @@ public function __construct(MembersRepository $members)
         //add a new member
 
         $data = [
-          'members' => $this->members->listMembers()
+          'members' => $this->members->listMembers(),
+          'title' => 'Add a Member',
         ];
 
-        return view('admin.add', $data);
+        return view('admin.memberForm', $data);
     }
 
     /**
@@ -97,9 +98,19 @@ public function __construct(MembersRepository $members)
      * @param  \App\Members  $members
      * @return \Illuminate\Http\Response
      */
-    public function edit(Members $members)
+    public function edit(Members $members, Request $request)
     {
-        //
+        //get members id
+        $member_id = str_after($request->path(), 'members/');
+        $member_id = str_before($member_id, '/');
+
+        $data = [
+          'members' => $this->members->getMember($member_id),
+          'isEditPage' => true, //boolean to show form values
+          'title' => 'Edit Member',
+        ];
+
+        return view('admin.memberForm', $data);
     }
 
     /**
@@ -112,6 +123,23 @@ public function __construct(MembersRepository $members)
     public function update(Request $request, Members $members)
     {
         //
+        $member_id = $request->id;
+
+        $member = $this->members->getMember($member_id);
+
+        $member->firstName = $request->firstName;
+        $member->lastName = $request->lastName;
+        $member->email = $request->email;
+        $member->address1 = $request->address1;
+        $member->address2 = $request->address2;
+        $member->postcode = $request->postcode;
+        $member->DOB = $request->DOB;
+        $member->phone = $request->phone;
+        $member->subscription = $request->subscription;
+        $member->save();
+
+        return redirect()->action('MembersController@index');
+
     }
 
     /**

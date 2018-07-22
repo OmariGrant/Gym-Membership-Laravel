@@ -18,9 +18,9 @@ class MembersRepository
   }
 
 // get particular member
-  public function getMember(User $user)
+  public function getMember($id)
   {
-    return User::find($user->id)->Member->get();
+    return Members::find($id);
   }
 }
 
