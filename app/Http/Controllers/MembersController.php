@@ -80,9 +80,15 @@ public function __construct(MembersRepository $members)
      * @param  \App\Members  $members
      * @return \Illuminate\Http\Response
      */
-    public function show(Members $members)
+    public function show(Members $members, Request $request)
     {
         //
+        $member_id = str_after($request->path(), 'members/');
+
+        $data = [
+          'member' => $members::find($member_id),
+        ];
+        return view('admin.show', $data);
     }
 
     /**
