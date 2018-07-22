@@ -15,7 +15,7 @@ protected $members;
 
 public function __construct(MembersRepository $members)
 {
-    $this->middleware('auth');
+    // $this->middleware('auth');
 
     $this->members = $members;
 }
@@ -59,7 +59,19 @@ public function __construct(MembersRepository $members)
      */
     public function store(Request $request)
     {
-        //
+        //save new Member
+        $member = \App\Members::create([
+          'firstName' => $request->firstName,
+          'lastName' => $request->lastName,
+          'email' => $request->email,
+          'address1' => $request->address1,
+          'address2' => $request->address2,
+          'postcode' => $request->postcode,
+          'DOB' => $request->DOB,
+          'phone' => $request->phone,
+          'subscription' => $request->subscription
+        ]);
+
     }
 
     /**

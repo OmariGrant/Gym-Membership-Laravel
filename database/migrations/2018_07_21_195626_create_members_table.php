@@ -17,9 +17,12 @@ class CreateMembersTable extends Migration
             $table->increments('id');
             $table->string('firstName');
             $table->string('lastName');
-            $table->json('address');
+            $table->string('email');
+            $table->string('address1');
+            $table->string('address2');
+            $table->string('postcode');
             $table->date('DOB')->nullable();
-            $table->integer('phone')->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->char('subscription', 1);
             $table->timestamps();
         });
@@ -34,10 +37,10 @@ class CreateMembersTable extends Migration
      */
     public function down()
     {
-        Schema::table('members', function (Blueprint $table) {
-            $table->dropForeign('members_user_id_foreign');
-        });
-        
+        // Schema::table('members', function (Blueprint $table) {
+        //     $table->dropForeign('members_user_id_foreign');
+        // });
+
         Schema::dropIfExists('members');
     }
 }

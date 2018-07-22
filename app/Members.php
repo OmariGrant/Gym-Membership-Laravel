@@ -13,19 +13,13 @@ class Members extends Model
 protected $fillable = [
   'firstName',
   'lastName',
-  'address',
+  'email',
+  'address1',
+  'address2',
+  'postcode',
   'DOB',
   'phone',
   'subscription'
 ];
-
-
-// Find user
-
-public function user()
-{
-  return $this->belongsTo(User::class);
-}
-
 
 }
