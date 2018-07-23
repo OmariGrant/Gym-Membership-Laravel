@@ -6,6 +6,8 @@ Meet Laravel 5.6 requirements
 
 Clone this repository
 
+Set your database configuration with .env or your preferred method.
+
 run the command: php artisan migrate --seed
 
 run the command: php artisan serve
