@@ -1,5 +1,16 @@
 # Gym-Membership-Laravel
 
+## Installation
+
+Meet Laravel 5.6 requirements
+Clone this repository
+run the command: php artisan migrate --seed
+run the command: php artisan serve
+view the site at 127.0.0.1:8000 (by default)
+login with the default credentials:
+email: test@example.com
+password: gym123
+
 ## Scenario
 
 A new gym has opened that needs a system for taking new memberships. Listed are the requirements from the product owner.
