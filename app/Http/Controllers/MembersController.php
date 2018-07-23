@@ -15,7 +15,7 @@ protected $members;
 
 public function __construct(MembersRepository $members)
 {
-    // $this->middleware('auth');
+    $this->middleware('auth');
 
     $this->members = $members;
 }
@@ -151,5 +151,22 @@ public function __construct(MembersRepository $members)
     public function destroy(Members $members)
     {
         //
+    }
+
+    // reports index
+    public function reportsIndex()
+    {
+      // code...
+      return view('admin.reportsIndex');
+    }
+
+    // run reports
+    public function viewReport(Request $request)
+    {
+      $data = array(
+        'members' => $this->members->runReport($request->month, $request->year),
+        'total' => $this->members->runReport($request->month, $request->year)->count(),
+      );
+      return view('admin.reports', $data);
     }
 }

@@ -10,9 +10,6 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
-          <th>Address</th>
-          <th>DOB</th>
-          <th>Phone</th>
           <th>Subscription</th>
           <th>View Member?</th>
           <th>Edit Member?</th>
@@ -25,10 +22,7 @@
         <td>{{ $member->firstName }}</td>
         <td>{{ $member->lastName }}</td>
         <td>{{ $member->email }}</td>
-        <td>{{ $member->address1 }}, {{ $member->address2 }}, {{ $member->postcode }}</td>
-        <td>{{ $member->DOB }}</td>
-        <td>{{ $member->phone }}</td>
-        <td>{{ $member->subscription }}</td>
+        <td>@if($member->subscription == 'M') Monthly @else Yearly @endif</td>
         <td><a href="{{ url('/members\/').$member->id }}" class="btn btn-link" role="button">View Member</a></td>
         <td><a href="{{ url('/members\/').$member->id }}/edit" class="btn btn-link" role="button">Edit Member</a></td>
       </tr>

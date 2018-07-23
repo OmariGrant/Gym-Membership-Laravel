@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MembersController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('members', 'MembersController');
+
+
+Route::get('/reports', 'MembersController@reportsIndex')->name('reports');
+Route::post('/reports', 'MembersController@viewReport')->name('view reports');
